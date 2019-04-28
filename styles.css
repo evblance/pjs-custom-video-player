@@ -10,13 +10,13 @@
 
   --scrubber-height: 10px;
   --scrubber-fill-colour: hsl(0, 50%, 50%);
-  --scrubber-progress: 50%;
+  --scrubber-progress: 0%;
   --scrubber-bg: hsl(0deg, 30%, 20%);
   --scrubber-outline-colour: var(--scrubber-bg);
 
   --volume-height: 8px;
   --volume-fill-colour: hsl(0, 0%, 87%);
-  --volume-level: 80%;
+  --volume-level: 100%;
   --volume-bg: hsl(0, 0%, 27%);
   --volume-outline-colour: var(--volume-bg);
 }
