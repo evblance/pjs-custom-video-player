@@ -70,6 +70,12 @@ input[type=range] {
   height: var(--scrubber-height);
 }
 
+.control-label {
+  color: var(--primary-colour);
+  font: var(--text-font);
+  font-size: 0.85rem;
+}
+
 .scrubber-control {
   cursor: pointer;
   outline-color: var(--scrubber-fill-colour);
