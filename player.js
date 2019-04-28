@@ -73,6 +73,17 @@ function handleRewindControlClick(event) {
 }
 
 /**
+ * Updates the video current time and video player UI accordingly to a fraction of progress.
+ * @param {number} progress The video progress fraction [0, 1] to use in updating the video current time and UI.
+ */
+function setNewVideoTime(progress) {
+  const nextTime = progress * videoPlayer.duration;
+  const nextTimePercent = progress * 100;
+  document.documentElement.style.setProperty('--scrubber-progress', `${nextTimePercent}%`);
+  videoPlayer.currentTime = nextTime;
+}
+
+/**
  * Event handler for updating the video progress on scrub.
  * @param {any} event The scrubber input change event.
  */
@@ -80,11 +91,7 @@ function handleScrubberChange(event) {
   if (scrubberControlState !== SLIDER_CTRL_STATE.ENGAGED) {
     return;
   }
-  const videoDuration = videoPlayer.duration;
-  const nextTime = event.target.value * videoDuration;
-  const nextTimePercent = event.target.value * 100;
-  document.documentElement.style.setProperty('--scrubber-progress', `${nextTimePercent}%`);
-  videoPlayer.currentTime = nextTime;
+  setNewVideoTime(event.target.value);
 }
 
 /**
@@ -94,11 +101,7 @@ function handleScrubberChange(event) {
  */
 function handleScrubberEngage(event) {
   scrubberControlState = SLIDER_CTRL_STATE.ENGAGED;
-  const videoDuration = videoPlayer.duration;
-  const nextTime = event.target.value * videoDuration;
-  const nextTimePercent = event.target.value * 100;
-  document.documentElement.style.setProperty('--scrubber-progress', `${nextTimePercent}%`);
-  videoPlayer.currentTime = nextTime;
+  setNewVideoTime(event.target.value);
 }
 
 /**
