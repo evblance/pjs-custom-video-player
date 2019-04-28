@@ -133,6 +133,10 @@ function handleVolumeChange(event) {
  */
 function handleVolumeEngage(event) {
   volumeControlState = SLIDER_CTRL_STATE.ENGAGED;
+  const nextVolume = event.target.value;
+  const nextVolumePercent = nextVolume * 100;
+  document.documentElement.style.setProperty('--volume-level', `${nextVolumePercent}%`);
+  videoPlayer.volume = nextVolume;
 }
 
 /**
