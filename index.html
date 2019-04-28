@@ -9,6 +9,45 @@
 </head>
 
 <body>
+  <div class="wrapper">
+    <video id="video" class="video-player" src="./sample.mp4"></video>
+    <div class="control-panel">
+      <div class="control-panel__top">
+        <input
+          id="scrubberControl"
+          class="scrubber-control"
+          name="scrubber"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+        />
+      </div>
+      <div class="control-panel__bottom">
+        <div class="bottom-controls">
+          <div class="bottom-controls__left">
+            <button id="playBtn" class="control-btn">▶</button>
+            <button id="rewindBtn" class="control-btn">Back 10s</button>
+          </div>
+          <div class="bottom-controls__right">
+            <div class="control-wrapper">
+              <label class="control-label" for="volumeControl" name="volumeControl">Vol.</label>
+              <input
+                id="volumeControl"
+                class="volume-control"
+                name="volume"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+              />
+            </div>
+            <button id="fullscreenBtn" class="control-btn">🖵</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="./player.js"></script>
 </body>
 
