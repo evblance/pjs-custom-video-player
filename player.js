@@ -113,6 +113,17 @@ function handleScrubberDisengage(event) {
 }
 
 /**
+ * Updates the video volume and video player UI according to the new volume level.
+ * @param {number} levelValue The video volume level [0, 1] to use in updating the video volume and UI.
+ */
+function setNewVideoVolume(levelValue) {
+  const nextVolume = levelValue;
+  const nextVolumePercent = nextVolume * 100;
+  document.documentElement.style.setProperty('--volume-level', `${nextVolumePercent}%`);
+  videoPlayer.volume = nextVolume;
+}
+
+/**
  * Event handler for updating the video volume on volume change.
  * @param {any} event The volume input change event.
  */
@@ -120,10 +131,7 @@ function handleVolumeChange(event) {
   if (volumeControlState !== SLIDER_CTRL_STATE.ENGAGED) {
     return;
   }
-  const nextVolume = event.target.value;
-  const nextVolumePercent = nextVolume * 100;
-  document.documentElement.style.setProperty('--volume-level', `${nextVolumePercent}%`);
-  videoPlayer.volume = nextVolume;
+  setNewVideoVolume(event.target.value);
 }
 
 /**
@@ -133,10 +141,7 @@ function handleVolumeChange(event) {
  */
 function handleVolumeEngage(event) {
   volumeControlState = SLIDER_CTRL_STATE.ENGAGED;
-  const nextVolume = event.target.value;
-  const nextVolumePercent = nextVolume * 100;
-  document.documentElement.style.setProperty('--volume-level', `${nextVolumePercent}%`);
-  videoPlayer.volume = nextVolume;
+  setNewVideoVolume(event.target.value);
 }
 
 /**
