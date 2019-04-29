@@ -8,6 +8,12 @@
   --control-bg: var(--primary-colour);
   --control-hover-bg: hsl(0, 0%, 28%);
 
+  --playback-rate-height: 8px;
+  --playback-rate-fill-colour: hsl(0, 0%, 87%);
+  --playback-rate: 50%;
+  --playback-rate-bg: hsl(0, 0%, 27%);
+  --playback-rate-outline-colour: var(--playback-rate-bg);
+
   --scrubber-height: 10px;
   --scrubber-fill-colour: hsl(0, 50%, 50%);
   --scrubber-progress: 0%;
@@ -74,6 +80,73 @@ input[type=range] {
   color: var(--primary-colour);
   font: var(--text-font);
   font-size: 0.85rem;
+}
+
+.playback-rate-control {
+  cursor: pointer;
+  outline-color: var(--playback-rate-fill-colour);
+  width: 100px;
+}
+
+.playback-rate-control::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    var(--playback-rate-fill-colour),
+    var(--playback-rate-fill-colour) var(--playback-rate),
+    var(--playback-rate-bg) var(--playback-rate),
+    var(--playback-rate-bg)
+  );
+  height: var(--playback-rate-height);
+}
+
+.playback-rate-control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: var(--playback-rate-fill-colour);
+  height: var(--playback-rate-height);
+  margin: 0;
+  padding: 0;
+  width: 1px;
+}
+
+.playback-rate-control::-moz-range-track {
+  background: linear-gradient(
+    to right,
+    var(--playback-rate-fill-colour),
+    var(--playback-rate-fill-colour) var(--playback-rate),
+    var(--playback-rate-bg) var(--playback-rate),
+    var(--playback-rate-bg)
+  );
+  border: none;
+  height: var(--volume-height);
+}
+
+.playback-rate-control::-moz-range-thumb {
+  background: var(--playback-rate-fill-colour);
+  border: none;
+  height: var(--playback-rate-height);
+  margin: 0;
+  padding: 0;
+  width: 1px;
+}
+
+.playback-rate-control::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.playback-rate-control::-ms-fill-lower {
+  background: var(--playback-rate-fill-colour);
+}
+
+.playback-rate-control::-ms-fill-upper {
+  background: var(--playback-rate-bg);
+}
+
+.playback-rate-control::-ms-thumb {
+  background: var(--playback-rate-fill-colour);
+  height: var(--playback-rate-height);
+  width: 1px;
 }
 
 .scrubber-control {
