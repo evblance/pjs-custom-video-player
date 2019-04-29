@@ -169,7 +169,6 @@ function setNewVideoPlaybackRate(rateValue) {
  * @param {any} event The playback rate input change event.
  */
 function handlePlaybackRateChange(event) {
-  console.log(event.target.value);
   if (playbackRateControlState !== SLIDER_CTRL_STATE.ENGAGED) {
     return;
   }
