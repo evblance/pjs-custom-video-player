@@ -18,6 +18,7 @@ const PAUSE_TEXT = '❚❚';
 // Initialise slider control states
 let scrubberControlState = SLIDER_CTRL_STATE.DISENGAGED;
 let volumeControlState = SLIDER_CTRL_STATE.DISENGAGED;
+let playbackRateControlState = SLIDER_CTRL_STATE.DISENGAGED;
 
 /**
  * Handles UI updates on video play or pause.
@@ -152,6 +153,47 @@ function handleVolumeDisengage(event) {
   volumeControlState = SLIDER_CTRL_STATE.DISENGAGED;
 }
 
+/**
+ * Updates the video playback rate and video player UI according to the new playback rate.
+ * @param {number} rateValue The video playback rate [0.5, 2] to use in updating the video playback rate and UI.
+ */
+function setNewVideoPlaybackRate(rateValue) {
+  const nextRate = rateValue;
+  const nextRatePercent = (nextRate / 2) * 100;
+  document.documentElement.style.setProperty('--playback-rate', `${nextRatePercent}%`);
+  videoPlayer.playbackRate = nextRate;
+}
+
+/**
+ * Event handler for updating the video playback rate on playback rate change.
+ * @param {any} event The playback rate input change event.
+ */
+function handlePlaybackRateChange(event) {
+  console.log(event.target.value);
+  if (playbackRateControlState !== SLIDER_CTRL_STATE.ENGAGED) {
+    return;
+  }
+  setNewVideoPlaybackRate(event.target.value);
+}
+
+/**
+ * Event handler for engaging the control state of the playback rate slider
+ * and updating the video playback rate on the user's playback rate input engagement.
+ * @param {any} event The playback rate input event.
+ */
+function handlePlaybackRateEngage(event) {
+  playbackRateControlState = SLIDER_CTRL_STATE.ENGAGED;
+  setNewVideoPlaybackRate(event.target.value);
+}
+
+/**
+ * Event handler for disengaging the playback rate input.
+ * @param {any} event The playback rate input event.
+ */
+function handlePlaybackRateDisengage(event) {
+  playbackRateControlState = SLIDER_CTRL_STATE.DISENGAGED;
+}
+
 // Event listener specifications for user interaction 
 videoPlayer.addEventListener('playing', handleVideoStateChange);
 videoPlayer.addEventListener('pause', handleVideoStateChange);
@@ -165,3 +207,6 @@ scrubberControl.addEventListener('input', handleScrubberChange);
 volumeControl.addEventListener('mousedown', handleVolumeEngage);
 volumeControl.addEventListener('mouseup', handleVolumeDisengage);
 volumeControl.addEventListener('input', handleVolumeChange);
+playbackRateControl.addEventListener('mousedown', handlePlaybackRateEngage);
+playbackRateControl.addEventListener('mouseup', handlePlaybackRateDisengage);
+playbackRateControl.addEventListener('input', handlePlaybackRateChange);
